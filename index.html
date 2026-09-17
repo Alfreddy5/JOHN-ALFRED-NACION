@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John Alfred Nacion</title>
+<meta name="description" content="Personal website of John Alfred Nacion — 2nd year student at Central Philippines State University, DJVV Campus." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch-deep: #0A2318;
+    --pitch: #123524;
+    --pitch-line: rgba(246,245,239,0.14);
+    --chalk: #F1F5F0;
+    --chalk-line: rgba(15,42,28,0.13);
+    --ink: #0F2A1C;
+    --ink-soft: #4C6357;
+    --amber: #E8A33D;
+    --amber-bright: #FFC569;
+    --max: 980px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--chalk);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,35,24,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--pitch-line);
+  }
+  nav{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px; max-width: var(--max); margin: 0 auto;
+  }
+  .mark{
+    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.15rem;
+    color: var(--chalk); letter-spacing: 0.02em;
+  }
+  .mark span{ color: var(--amber); }
+  .nav-links{ display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a{
+    color: var(--chalk); text-decoration: none; font-size: 0.95rem;
+    padding: 6px 2px; border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .nav-links a:hover{ border-color: var(--amber); color: var(--amber-bright); }
+
+  .menu-btn{
+    display: none; background: none; border: 1px solid var(--pitch-line);
+    border-radius: 6px; padding: 8px 10px; cursor: pointer;
+  }
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after{
+    display: block; width: 18px; height: 2px; background: var(--chalk);
+    position: relative; transition: 0.2s;
+  }
+  .menu-btn span::before, .menu-btn span::after{ content: ""; position: absolute; }
+  .menu-btn span::before{ top: -6px; }
+  .menu-btn span::after{ top: 6px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      repeating-linear-gradient(0deg, rgba(246,245,239,0.025) 0px, rgba(246,245,239,0.025) 1px, transparent 1px, transparent 64px),
+      radial-gradient(ellipse 900px 500px at 80% -10%, rgba(232,163,61,0.20), transparent 60%),
+      linear-gradient(180deg, var(--pitch-deep), var(--pitch));
+    color: var(--chalk);
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--pitch-line);
+  }
+  .hero .eyebrow{
+    color: var(--amber-bright); font-size: 0.95rem; font-weight: 500;
+    opacity: 0; animation: rise 0.7s ease forwards; animation-delay: 0.05s;
+  }
+  .hero h1{
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.12; margin-top: 14px; max-width: 15ch;
+    opacity: 0; animation: rise 0.7s ease forwards; animation-delay: 0.18s;
+  }
+  .hero p.sub{
+    margin-top: 20px; max-width: 46ch; font-size: 1.08rem; color: rgba(241,245,240,0.82);
+    opacity: 0; animation: rise 0.7s ease forwards; animation-delay: 0.32s;
+  }
+  .hero .cta-row{
+    margin-top: 34px; display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: rise 0.7s ease forwards; animation-delay: 0.46s;
+  }
+  .btn{
+    display: inline-block; font-family: 'Oswald', sans-serif; font-size: 1rem;
+    letter-spacing: 0.02em; padding: 13px 26px; border-radius: 999px;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary{ background: var(--amber); color: var(--pitch-deep); font-weight: 600; }
+  .btn-primary:hover{ background: var(--amber-bright); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(232,163,61,0.28); }
+  .btn-ghost{ background: transparent; color: var(--chalk); border: 1px solid var(--pitch-line); font-weight: 500; }
+  .btn-ghost:hover{ border-color: var(--amber); color: var(--amber-bright); }
+
+  .scoreboard{
+    margin-top: 56px; display: flex; gap: 0; flex-wrap: wrap;
+    opacity: 0; animation: rise 0.7s ease forwards; animation-delay: 0.6s;
+  }
+  .stat{ padding: 4px 30px 4px 0; border-right: 1px solid var(--pitch-line); margin-right: 30px; }
+  .stat:last-child{ border-right: none; margin-right: 0; }
+  .stat .num{
+    font-family: 'Oswald', sans-serif; font-size: 1.9rem; font-weight: 700;
+    color: var(--amber-bright); font-variant-numeric: tabular-nums;
+  }
+  .stat .lbl{ font-size: 0.82rem; color: rgba(241,245,240,0.65); margin-top: 2px; }
+
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  section h2{ font-size: clamp(1.6rem, 3vw, 2.1rem); }
+  .section-head{ max-width: 60ch; margin-bottom: 44px; }
+  .section-head p{ color: var(--ink-soft); margin-top: 10px; font-size: 1.03rem; }
+
+  /* ---------- About ---------- */
+  #about{ background: var(--chalk); border-bottom: 1px solid var(--chalk-line); }
+  .profile{
+    display: grid; grid-template-columns: auto 1fr; gap: 30px; align-items: start;
+  }
+  .avatar{
+    width: 92px; height: 92px; border-radius: 50%;
+    background: linear-gradient(145deg, var(--pitch), var(--pitch-deep));
+    color: var(--amber-bright); display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif; font-size: 1.6rem; font-weight: 700;
+    flex-shrink: 0; transition: transform 0.25s ease;
+  }
+  .profile:hover .avatar{ transform: rotate(-4deg) scale(1.04); }
+  .profile-name{ font-size: 1.5rem; }
+  .profile-role{ color: var(--ink-soft); margin-top: 4px; }
+  .stat-line{
+    display: flex; gap: 40px; flex-wrap: wrap; margin-top: 24px;
+    padding-top: 22px; border-top: 1px solid var(--chalk-line);
+  }
+  .stat-line div{ transition: transform 0.18s ease; }
+  .stat-line div:hover{ transform: translateY(-3px); }
+  .stat-line .k{ font-size: 0.82rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-line .v{ font-family: 'Oswald', sans-serif; font-size: 1.15rem; margin-top: 3px; }
+  .blurb{ margin-top: 26px; max-width: 58ch; color: var(--ink-soft); font-size: 1.02rem; }
+
+  /* ---------- Home ground / study ---------- */
+  #study{
+    background: linear-gradient(180deg, var(--pitch-deep), var(--pitch));
+    color: var(--chalk);
+  }
+  #study .section-head p{ color: rgba(241,245,240,0.75); }
+  .ground-card{
+    border: 1px solid var(--pitch-line); border-radius: 18px; padding: 40px;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .ground-card:hover{ border-color: var(--amber); background: rgba(232,163,61,0.05); }
+  .ground-card .school{ font-size: clamp(1.5rem, 3.6vw, 2.2rem); }
+  .ground-card .campus{ color: var(--amber-bright); font-family: 'Oswald', sans-serif; font-size: 1.1rem; margin-top: 6px; }
+  .ground-card .meta{ margin-top: 18px; color: rgba(241,245,240,0.7); }
+
+  /* ---------- Hobbies (roster) ---------- */
+  #hobbies{ background: var(--chalk); }
+  .roster{ display: flex; flex-direction: column; gap: 2px; }
+  .roster-row{
+    display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: center;
+    padding: 22px 20px; border-radius: 12px; border: 1px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .roster-row:hover{ background: rgba(15,42,28,0.04); transform: translateX(4px); }
+  .roster-row.favorite{
+    background: rgba(232,163,61,0.08); border-color: rgba(232,163,61,0.35);
+  }
+  .roster-row.favorite:hover{ background: rgba(232,163,61,0.14); }
+  .jersey{
+    font-family: 'Oswald', sans-serif; font-size: 1.9rem; font-weight: 700;
+    color: var(--pitch); text-align: center; font-variant-numeric: tabular-nums;
+  }
+  .favorite .jersey{ color: var(--amber); }
+  .roster-row h3{ font-size: 1.12rem; }
+  .roster-row p{ margin: 4px 0 0; color: var(--ink-soft); font-size: 0.98rem; }
+  .tag{
+    display: inline-block; margin-left: 10px; font-size: 0.72rem; font-family: 'Inter', sans-serif;
+    font-weight: 600; color: var(--pitch-deep); background: var(--amber-bright);
+    padding: 2px 9px; border-radius: 999px; vertical-align: middle;
+  }
+
+  /* ---------- Skills (attribute bars) ---------- */
+  #skills{
+    background: linear-gradient(180deg, var(--pitch), var(--pitch-deep));
+    color: var(--chalk);
+  }
+  #skills .section-head p{ color: rgba(241,245,240,0.75); }
+  .attrs{ display: flex; flex-direction: column; gap: 22px; max-width: 640px; }
+  .attr .row{ display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .attr .name{ font-family: 'Oswald', sans-serif; font-size: 1.05rem; }
+  .attr .meter{
+    height: 8px; border-radius: 999px; background: rgba(241,245,240,0.14); overflow: hidden;
+  }
+  .attr .fill{
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--amber), var(--amber-bright));
+    width: var(--w, 70%);
+    transition: filter 0.2s ease;
+  }
+  .attr:hover .fill{ filter: brightness(1.15); }
+  .attr:hover .name{ color: var(--amber-bright); }
+  .attr .name{ transition: color 0.2s ease; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--pitch-deep); color: rgba(241,245,240,0.6);
+    padding: 32px 0; font-size: 0.9rem; text-align: center;
+    border-top: 1px solid var(--pitch-line);
+  }
+
+  @media (max-width: 720px){
+    .nav-links{
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
+      background: var(--pitch-deep); padding: 18px 28px; gap: 16px;
+      border-bottom: 1px solid var(--pitch-line);
+      display: none;
+    }
+    .nav-links.open{ display: flex; }
+    .menu-btn{ display: block; }
+    .profile{ grid-template-columns: 1fr; }
+    .stat-line{ gap: 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+    .hero .eyebrow, .hero h1, .hero p.sub, .hero .cta-row, .scoreboard{ opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="mark">J<span>.</span>A<span>.</span>N.</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#study">Study</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#skills">Strengths</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="eyebrow">Personal website</div>
+    <h1>Welcome to my personal website, I'm John Alfred Nacion</h1>
+    <p class="sub">A 2nd year student who splits his time between the classroom, the pitch, and a good playlist.</p>
+    <div class="cta-row">
+      <a href="#about" class="btn btn-primary">About me</a>
+      <a href="#hobbies" class="btn btn-ghost">See my hobbies</a>
+    </div>
+    <div class="scoreboard">
+      <div class="stat"><div class="num">20</div><div class="lbl">Age</div></div>
+      <div class="stat"><div class="num">2nd</div><div class="lbl">Year level</div></div>
+      <div class="stat"><div class="num">2-C</div><div class="lbl">Section</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Player profile</h2>
+      <p>A quick look at who I am off the headline.</p>
+    </div>
+    <div class="profile">
+      <div class="avatar">JAN</div>
+      <div>
+        <div class="profile-name">John Alfred Nacion</div>
+        <div class="profile-role">Student, Central Philippines State University</div>
+        <div class="stat-line">
+          <div><div class="k">Age</div><div class="v">20</div></div>
+          <div><div class="k">Year &amp; section</div><div class="v">2nd Year, Section 2-C</div></div>
+        </div>
+        <p class="blurb">Steady under pressure and patient with people — I try to bring the same discipline to my studies that I bring to ninety minutes on the pitch: show up, manage the time I'm given, and keep faith in the process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="study">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where I study</h2>
+      <p>My home ground for the past two years.</p>
+    </div>
+    <div class="ground-card">
+      <div class="school">Central Philippines State University</div>
+      <div class="campus">DJVV Campus</div>
+      <div class="meta">Currently in 2nd year, Section 2-C.</div>
+    </div>
+  </div>
+</section>
+
+<section id="hobbies">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Off the pitch</h2>
+      <p>When I'm not in class, here's where my time goes.</p>
+    </div>
+    <div class="roster">
+      <div class="roster-row favorite">
+        <div class="jersey">10</div>
+        <div>
+          <h3>Football<span class="tag">Favorite</span></h3>
+          <p>My favorite way to reset — nothing clears my head like time on the pitch.</p>
+        </div>
+      </div>
+      <div class="roster-row">
+        <div class="jersey">04</div>
+        <div>
+          <h3>Movies</h3>
+          <p>Watching movies, whatever genre pulls me in that day.</p>
+        </div>
+      </div>
+      <div class="roster-row">
+        <div class="jersey">05</div>
+        <div>
+          <h3>Music</h3>
+          <p>Listening to songs on repeat until I know every word.</p>
+        </div>
+      </div>
+      <div class="roster-row">
+        <div class="jersey">06</div>
+        <div>
+          <h3>Video games</h3>
+          <p>Playing video games to unwind after a long day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Strengths</h2>
+      <p>The habits I lean on, in the classroom and on the pitch.</p>
+    </div>
+    <div class="attrs">
+      <div class="attr">
+        <div class="row"><span class="name">Time management</span></div>
+        <div class="meter"><div class="fill" style="--w: 90%"></div></div>
+      </div>
+      <div class="attr">
+        <div class="row"><span class="name">Observant</span></div>
+        <div class="meter"><div class="fill" style="--w: 85%"></div></div>
+      </div>
+      <div class="attr">
+        <div class="row"><span class="name">Hardworking</span></div>
+        <div class="meter"><div class="fill" style="--w: 93%"></div></div>
+      </div>
+      <div class="attr">
+        <div class="row"><span class="name">Faith &amp; patience</span></div>
+        <div class="meter"><div class="fill" style="--w: 90%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  John Alfred Nacion — Central Philippines State University, DJVV Campus
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
