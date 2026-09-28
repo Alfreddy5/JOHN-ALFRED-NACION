@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parking Reserve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="top" aria-label="Main">
+    <div class="bar">
+      <a class="brand" href="#reserve"><span class="logo" aria-hidden="true">P</span>Parking Reserve</a>
+      <a href="#reserve">Reserve</a>
+      <a href="#bookings">My bookings</a>
+      <a href="#info">My info</a>
+    </div>
+  </nav>
+
+  <main>
+    <div id="page-reserve">
+      <header>
+        <h1>Reserve a parking spot</h1>
+        <p><span id="hello"></span> Choose a date and time, then tap a free bay.</p>
+        <span class="avail" id="avail"></span>
+      </header>
+
+      <section class="filters" aria-label="When do you need parking?">
+        <label>Date <input type="date" id="date"></label>
+        <label>From <input type="time" id="from" value="08:00"></label>
+        <label>Until <input type="time" id="to" value="17:00"></label>
+        <ul class="legend">
+          <li><span class="dot free"></span>Free</li>
+          <li><span class="dot taken"></span>Taken</li>
+        </ul>
+      </section>
+
+      <section class="lot" aria-label="Parking lot">
+        <div class="row" id="rowA"></div>
+        <div class="lane">Drive lane</div>
+        <div class="row" id="rowB"></div>
+      </section>
+    </div>
+
+    <div id="page-bookings" hidden>
+      <header>
+        <h1>My bookings</h1>
+        <p>Enter your plate number to see or cancel your upcoming bookings.</p>
+      </header>
+      <div class="find">
+        <input id="findPlate" placeholder="Plate number" autocomplete="off">
+        <button id="findBtn" class="btn">Find bookings</button>
+      </div>
+      <ul id="myList"></ul>
+    </div>
+
+    <div id="page-info" hidden>
+      <header>
+        <h1>My info</h1>
+        <p>Save your details once and we fill them in for every booking.</p>
+      </header>
+      <form id="infoForm" class="card">
+        <label>Full name <input id="uName" required maxlength="60" autocomplete="name"></label>
+        <label>Plate number <input id="uPlate" required maxlength="12" autocomplete="off"></label>
+        <label>Phone number (optional) <input id="uPhone" type="tel" maxlength="20" autocomplete="tel"></label>
+        <div class="actions">
+          <button type="button" id="clearInfo" class="btn ghost">Clear my info</button>
+          <button type="submit" class="btn">Save my info</button>
+        </div>
+        <p class="note">Your details stay in this browser. The name, plate and phone you book with are stored with the reservation.</p>
+      </form>
+    </div>
+  </main>
+
+  <dialog id="dlg">
+    <form id="form" method="dialog">
+      <h2>Reserve slot <span id="dlgSlot"></span></h2>
+      <p id="dlgWhen" class="when"></p>
+      <label>Your name <input id="name" required maxlength="60" autocomplete="name"></label>
+      <label>Plate number <input id="plate" required maxlength="12" autocomplete="off"></label>
+      <label>Phone number (optional) <input id="phone" type="tel" maxlength="20" autocomplete="tel"></label>
+      <div class="actions">
+        <button type="button" id="cancel" class="btn ghost">Cancel</button>
+        <button type="submit" class="btn">Reserve slot</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
